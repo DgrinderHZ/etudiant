@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETTI - Listes des étudiants</title>
-</head>
-<body>
+<?php include("template/header.php"); ?>
+
+    <h2>Ajouter un etudiant</h2>
     <form action="#">
         <div>
             <label for="nom">Nom:</label>
@@ -25,5 +19,4 @@
             <input type="text" name="cin" id="cin">
         </div>
     </form>
-</body>
-</html>
+<?php include("template/footer.php"); ?>
