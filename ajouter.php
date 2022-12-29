@@ -63,7 +63,7 @@ if(isset($_POST["submit"])){
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="date" name="email" id="email">
+            <input type="text" name="email" id="email">
             <div class="red-text"> <?php echo $errors['email']; ?></div>
         </div>
         <div>
