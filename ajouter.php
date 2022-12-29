@@ -1,3 +1,7 @@
+<?php
+var_dump($_POST);
+?>
+
 <?php include("template/header.php"); ?>
 <section class="container grey-text">
     <h2 class="center">Ajouter un etudiant</h2>
