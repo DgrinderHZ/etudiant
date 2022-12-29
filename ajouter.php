@@ -1,7 +1,7 @@
 <?php include("template/header.php"); ?>
-
-    <h2>Ajouter un etudiant</h2>
-    <form action="#">
+<section class="container grey-text">
+    <h2 class="center">Ajouter un etudiant</h2>
+    <form action="#" class="white" >
         <div>
             <label for="nom">Nom:</label>
             <input type="text" name="nom" id="nom">
@@ -19,4 +19,5 @@
             <input type="text" name="cin" id="cin">
         </div>
     </form>
+</section>
 <?php include("template/footer.php"); ?>
