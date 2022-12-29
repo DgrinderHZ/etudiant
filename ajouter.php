@@ -1,7 +1,7 @@
 <?php
 $errors = array("nom"=>'', "prenom"=>'', "date_naissance"=>'',
-                "cin"=>'', "password"=>'');
-                
+                "cin"=>'', "password"=>'', "email"=>'');
+
 if(isset($_POST["submit"])){
    //var_dump($_POST);
     if(empty($_POST["nom"])){
@@ -15,6 +15,16 @@ if(isset($_POST["submit"])){
     }else{
         $prenom = $_POST["prenom"];
         echo $prenom . "<br>";
+    }
+    if(empty($_POST["email"])){
+        $errors['email'] = "Le email ne doit pas etre vide!";
+    }else{
+        $email = $_POST["email"];
+        // verifier le format d'email est valid
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $errors['email'] = "Email n'est pas valid!";
+        }
+        echo $email . "<br>";
     }
     if(empty($_POST["date_naissance"])){
         $errors['date_naissance'] = "La date de naissance ne doit pas etre vide!";
@@ -50,6 +60,11 @@ if(isset($_POST["submit"])){
             <label for="prenom">Prenom:</label>
             <input type="text" name="prenom" id="prenom">
             <div class="red-text"> <?php echo $errors['prenom']; ?></div>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="date" name="email" id="email">
+            <div class="red-text"> <?php echo $errors['email']; ?></div>
         </div>
         <div>
             <label for="date_naissance">Date naissance:</label>
