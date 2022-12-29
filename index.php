@@ -8,5 +8,6 @@
 </head>
 <body>
     Hi
+    <a href="ajouter.php">Ajouter Etudiant</a>
 </body>
 </html>
