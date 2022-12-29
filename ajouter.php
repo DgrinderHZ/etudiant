@@ -1,4 +1,17 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "etti_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
 $errors = array("nom"=>'', "prenom"=>'', "date_naissance"=>'',
                 "cin"=>'', "password"=>'', "email"=>'');
 $nom = '';
@@ -18,7 +31,6 @@ if(isset($_POST["submit"])){
         if(!preg_match("/^[a-zA-Z-' ]*$/",$nom)){
             $errors['nom'] = "Veuillez utiliser des lettres et des espaces!";
         }
-        echo htmlspecialchars($nom) . "<br>";
     }
     if(empty($_POST["prenom"])){
         $errors['prenom'] = "Le prenom ne doit pas etre vide!";
@@ -27,7 +39,6 @@ if(isset($_POST["submit"])){
         if(!preg_match("/^[a-zA-Z-' ]*$/",$prenom)){
             $errors['nom'] = "Veuillez utiliser des lettres et des espaces!";
         }
-        echo $prenom . "<br>";
     }
     if(empty($_POST["email"])){
         $errors['email'] = "Le email ne doit pas etre vide!";
@@ -37,7 +48,6 @@ if(isset($_POST["submit"])){
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $errors['email'] = "Email n'est pas valid!";
         }
-        echo $email . "<br>";
     }
     if(empty($_POST["date_naissance"])){
         $errors['date_naissance'] = "La date de naissance ne doit pas etre vide!";
@@ -46,13 +56,11 @@ if(isset($_POST["submit"])){
         if(!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date_naissance)){
              $errors['date_naissance'] = "Le formt de la date n'est pas valid";
         }
-        echo $date_naissance . "<br>";
     }
     if(empty($_POST["cin"])){
         $errors['cin'] = "Le CIN ne doit pas etre vide!";
     }else{
         $cin = $_POST["cin"];
-        echo $cin . "<br>";
     }
     if(empty($_POST["password"])){
         $errors['password'] =  "Le mot de passe ne doit pas etre vide!";
@@ -61,7 +69,25 @@ if(isset($_POST["submit"])){
         if(!preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $password)){
             $errors['password'] =  "doit avoir majuscule, miniscule et nombres!"; 
         }
-        echo $password . "<br>";
+    }
+
+    if (array_filter($errors)) {
+        //echo "il y a des errors...";
+    }else{
+        //echo "c'est bien...";
+
+        // ajouter l'etudiant à la base de donnée
+        $password = md5($password);
+        $sql = "INSERT INTO etudiant 
+                VALUES ('$cin', '$nom', '$prenom', '$date_naissance', '$email', '$password')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        // redirect
+        header('Location: index.php');
     }
 }
 ?>
