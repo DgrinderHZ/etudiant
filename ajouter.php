@@ -1,6 +1,13 @@
 <?php
 $errors = array("nom"=>'', "prenom"=>'', "date_naissance"=>'',
                 "cin"=>'', "password"=>'', "email"=>'');
+$nom = '';
+$prenom = '';
+$email = '';
+$date_naissance = '';
+$cin = '';
+$password = '';
+
 
 if(isset($_POST["submit"])){
    //var_dump($_POST);
@@ -8,12 +15,18 @@ if(isset($_POST["submit"])){
         $errors['nom'] = "Le nom ne doit pas etre vide!";
     }else{
         $nom = $_POST["nom"];
+        if(!preg_match("/^[a-zA-Z-' ]*$/",$nom)){
+            $errors['nom'] = "Veuillez utiliser des lettres et des espaces!";
+        }
         echo htmlspecialchars($nom) . "<br>";
     }
     if(empty($_POST["prenom"])){
         $errors['prenom'] = "Le prenom ne doit pas etre vide!";
     }else{
         $prenom = $_POST["prenom"];
+        if(!preg_match("/^[a-zA-Z-' ]*$/",$prenom)){
+            $errors['nom'] = "Veuillez utiliser des lettres et des espaces!";
+        }
         echo $prenom . "<br>";
     }
     if(empty($_POST["email"])){
@@ -30,6 +43,9 @@ if(isset($_POST["submit"])){
         $errors['date_naissance'] = "La date de naissance ne doit pas etre vide!";
     }else{
         $date_naissance = $_POST["date_naissance"];
+        if(!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date_naissance)){
+             $errors['date_naissance'] = "Le formt de la date n'est pas valid";
+        }
         echo $date_naissance . "<br>";
     }
     if(empty($_POST["cin"])){
@@ -42,6 +58,9 @@ if(isset($_POST["submit"])){
         $errors['password'] =  "Le mot de passe ne doit pas etre vide!";
     }else{
         $password = $_POST["password"];
+        if(!preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $password)){
+            $errors['password'] =  "doit avoir majuscule, miniscule et nombres!"; 
+        }
         echo $password . "<br>";
     }
 }
@@ -53,32 +72,32 @@ if(isset($_POST["submit"])){
     <form action="ajouter.php" class="white" method="POST">
         <div>
             <label for="nom">Nom:</label>
-            <input type="text" name="nom" id="nom">
+            <input type="text" name="nom" id="nom" value="<?php echo htmlspecialchars($nom);?>">
             <div class="red-text"> <?php echo $errors['nom']; ?></div>
         </div>
         <div>
             <label for="prenom">Prenom:</label>
-            <input type="text" name="prenom" id="prenom">
+            <input type="text" name="prenom" id="prenom" value="<?php echo htmlspecialchars($prenom);?>">
             <div class="red-text"> <?php echo $errors['prenom']; ?></div>
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($email);?>">
             <div class="red-text"> <?php echo $errors['email']; ?></div>
         </div>
         <div>
             <label for="date_naissance">Date naissance:</label>
-            <input type="date" name="date_naissance" id="date_naissance">
+            <input type="date" name="date_naissance" id="date_naissance" value="<?php echo htmlspecialchars($date_naissance); ?>">
             <div class="red-text"> <?php echo $errors['date_naissance']; ?></div>
         </div>
         <div>
             <label for="cin">CIN:</label>
-            <input type="text" name="cin" id="cin">
+            <input type="text" name="cin" id="cin" value="<?php echo htmlspecialchars($cin); ?>">
             <div class="red-text"> <?php echo $errors['cin']; ?></div>
         </div>
         <div>
             <label for="password">Mot de passe:</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($password); ?>">
             <div class="red-text"> <?php echo $errors['password']; ?></div>
         </div>
         <div class="center">
