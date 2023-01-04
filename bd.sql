@@ -8,3 +8,9 @@ CREATE TABLE etudiant(
     email varchar(30) not null UNIQUE,
     passwword varchar(250) NOT null
 );
+
+
+-- Reuete d'insertion
+use etti_db;
+INSERT INTO etudiant(cin,nom,prenom,date_naissance,email,passwword)
+VALUES ('UC1566554','Hassan','Lai','2022-01-01','hass@zek.com','hdfghfgf');
