@@ -44,7 +44,7 @@ mysqli_close($conn);
                         <p> <?php echo htmlspecialchars($etudiant['email']); ?></p>
                     </div>
                     <div class="card-action right-align">
-                        <a href="#" class="brand-text">Plus d'informations...</a>
+                        <a href="details.php?cin=<?php echo htmlspecialchars($etudiant['cin']); ?>" class="brand-text">Plus d'informations...</a>
                     </div>
                 </div>
             </div>
