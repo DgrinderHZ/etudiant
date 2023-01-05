@@ -15,7 +15,3 @@ use etti_db;
 INSERT INTO etudiant(cin,nom,prenom,date_naissance,email,passwword)
 VALUES ('UC1566554','Hassan','Lai','2022-01-01','hass@zek.com','hdfghfgf');
 
-$sql = "UPDATE etudiant 
-                SET nom='$nom', prenom='$prenom', 
-                    date_naissance='$date_naissance', email='$email'
-                WHERE cin='$cin'";

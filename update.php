@@ -35,12 +35,22 @@ if ($conn->connect_error) {
 
 $errors = array("nom"=>'', "prenom"=>'', "date_naissance"=>'',
                 "cin"=>'', "password"=>'', "email"=>'');
-$nom = $etudiant['nom'];
-$prenom = $etudiant['prenom'];
-$email = '';
-$date_naissance = $etudiant['date_naissance'];
-$cin = $etudiant['cin'];
-$password = $etudiant['passwword'];
+
+if(isset($etudiant)){
+    $nom = $etudiant['nom'];
+    $prenom = $etudiant['prenom'];
+    $email = $etudiant['email'];
+    $date_naissance = $etudiant['date_naissance'];
+    $cin = $etudiant['cin'];
+    $password = $etudiant['passwword'];
+}else{
+    $nom = '';
+    $prenom = '';
+    $email = '';
+    $date_naissance = '';
+    $cin = '';
+    $password = '';
+}
 
 
 if(isset($_POST["update"])){
@@ -83,14 +93,7 @@ if(isset($_POST["update"])){
     }else{
         $cin = $_POST["cin"];
     }
-    if(empty($_POST["password"])){
-        $errors['password'] =  "Le mot de passe ne doit pas etre vide!";
-    }else{
-        $password = $_POST["password"];
-        if(!preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $password)){
-            $errors['password'] =  "doit avoir majuscule, miniscule et nombres!"; 
-        }
-    }
+   
 
     if (array_filter($errors)) {
         //echo "il y a des errors...";
@@ -99,11 +102,13 @@ if(isset($_POST["update"])){
 
         // ajouter l'etudiant à la base de donnée
         $password = md5($password);
-        $sql = "INSERT INTO etudiant 
-                VALUES ('$cin', '$nom', '$prenom', '$date_naissance', '$email', '$password')";
+        $sql = $sql = "UPDATE etudiant 
+                SET nom='$nom', prenom='$prenom', 
+                    date_naissance='$date_naissance', email='$email'
+                WHERE cin='$cin'";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+        if (mysqli_query($conn, $sql)) {
+            echo "record updated successfully";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -114,6 +119,7 @@ if(isset($_POST["update"])){
 ?>
 
 <?php include("template/header.php"); ?>
+
 <section class="container grey-text">
     <h2 class="center">Mettre à jour un etudiant</h2>
     <form action="update.php" class="white" method="POST">
@@ -129,7 +135,7 @@ if(isset($_POST["update"])){
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($email ?? $etudiant['email']);?>">
+            <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($email);?>">
             <div class="red-text"> <?php echo $errors['email']; ?></div>
         </div>
         <div>
@@ -137,16 +143,12 @@ if(isset($_POST["update"])){
             <input type="date" name="date_naissance" id="date_naissance" value="<?php echo htmlspecialchars($date_naissance); ?>">
             <div class="red-text"> <?php echo $errors['date_naissance']; ?></div>
         </div>
-        <div>
+        <div hidden>
             <label for="cin">CIN:</label>
             <input type="text" name="cin" id="cin" value="<?php echo htmlspecialchars($cin); ?>">
             <div class="red-text"> <?php echo $errors['cin']; ?></div>
         </div>
-        <div>
-            <label for="password">Mot de passe:</label>
-            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($password); ?>">
-            <div class="red-text"> <?php echo $errors['password']; ?></div>
-        </div>
+      
         <div class="center">
             <input type="submit" value="update" name="update" class="btn brand z-depth-0">
         </div>
