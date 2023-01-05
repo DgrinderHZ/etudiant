@@ -66,7 +66,11 @@ if ($conn->connect_error) {
        </h4>
        <p>Né le: <?php echo htmlspecialchars($etudiant['date_naissance']); ?></p>
        <p>Email: <?php echo htmlspecialchars($etudiant['email']); ?></p>
-        <a href="#" class="btn brand z-depth-0">Modifier</a>
+        <!-- UPDATE form: formulaire de mise à jour -->
+        <form action="update.php" method="post">
+            <input hidden type="text" name="cin_update" value="<?php echo htmlspecialchars($etudiant['cin']); ?>">
+            <input type="submit" name="submit" value="Modifier" class="btn brand z-depth-0">
+        </form>
        <!-- DELETE form: formulaire de suppression -->
         <form action="details.php" method="post">
             <input hidden type="text" name="cin_delete" value="<?php echo htmlspecialchars($etudiant['cin']); ?>">
