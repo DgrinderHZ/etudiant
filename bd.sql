@@ -9,6 +9,21 @@ CREATE TABLE etudiant(
     passwword varchar(250) NOT null
 );
 
+CREATE TABLE type_user(
+    id Integer NOT null PRIMARY KEY,
+    titre varchar(30) not null
+);
+
+CREATE TABLE user(
+    id Integer NOT null PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email varchar(30) not null UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    id_type Integer,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_type) REFERENCES type_user(id)
+);
+
 
 -- Reuete d'insertion
 use etti_db;
