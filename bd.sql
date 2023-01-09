@@ -17,7 +17,6 @@ CREATE TABLE type_user(
 CREATE TABLE user(
     id Integer NOT null PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    email varchar(30) not null UNIQUE,
     password VARCHAR(255) NOT NULL,
     id_type Integer,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
