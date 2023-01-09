@@ -87,6 +87,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
 
 <?php include("../template/header.php"); ?>
+<?php include("../template/auth_nav.php") ?>
+
 <section class="container grey-text">
     <h2 class="center">Creer compte</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="white" method="POST">

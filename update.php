@@ -2,6 +2,7 @@
 
 require_once('config/db_connect.php');
 
+
 // Recuperer les donnees de POST
  if (isset($_POST['cin_update'])) {
     $cin = mysqli_real_escape_string($conn, $_POST['cin_update']);
@@ -108,6 +109,7 @@ if(isset($_POST["update"])){
 ?>
 
 <?php include("template/header.php"); ?>
+<?php include("template/main_nav.php") ?>
 
 <section class="container grey-text">
     <h2 class="center">Mettre à jour un etudiant</h2>

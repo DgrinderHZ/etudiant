@@ -93,6 +93,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         
 <?php include("../template/header.php"); ?>
+<?php include("../template/auth_nav.php") ?>
+
 <section class="container grey-text">
     <h2 class="center">Se connecter</h2>
     <p class="center red-text">

@@ -82,6 +82,8 @@ if(isset($_POST["submit"])){
 ?>
 
 <?php include("template/header.php"); ?>
+<?php include("template/main_nav.php"); ?>
+
 <section class="container grey-text">
     <h2 class="center">Ajouter un etudiant</h2>
     <form action="ajouter.php" class="white" method="POST">

@@ -44,6 +44,7 @@ require_once('config/db_connect.php');
 ?>
 
 <?php include("template/header.php") ?>
+<?php include("template/main_nav.php") ?>
 
 <div class="container center">
     <h2>Details</h2>

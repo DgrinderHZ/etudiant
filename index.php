@@ -18,6 +18,7 @@ mysqli_close($conn);
 ?>
 
 <?php include("template/header.php"); ?>
+<?php include("template/main_nav.php"); ?>
 
 
 <div class="container">
