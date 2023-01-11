@@ -1,6 +1,7 @@
 <?php
 require_once('config/db_connect.php');
 
+
 // enregistrer la requete dans une variable
 $sql = 'SELECT * FROM etudiant';
 

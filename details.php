@@ -1,5 +1,7 @@
 <?php
 require_once('config/db_connect.php');
+require_once('auth/login_required.php');
+
 
  // la partie suppression d'un etudiant
  if (isset($_POST['cin_delete'])) {

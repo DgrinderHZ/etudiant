@@ -1,7 +1,4 @@
-<?php
-// Initialize the session
-session_start();
-?>
+
 
 <nav class="white z-depth-0">
         <div class="container">

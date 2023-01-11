@@ -1,6 +1,8 @@
 <?php
 
 require_once('config/db_connect.php');
+require_once('auth/login_required.php');
+
 
 
 // Recuperer les donnees de POST

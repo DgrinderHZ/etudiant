@@ -1,5 +1,7 @@
 <?php
 require_once('config/db_connect.php');
+require_once('auth/login_required.php');
+
 
 $errors = array("nom"=>'', "prenom"=>'', "date_naissance"=>'',
                 "cin"=>'', "password"=>'', "email"=>'');
